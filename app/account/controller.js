@@ -16,6 +16,6 @@ export const createAccount = catchAsync(async(req,res,next)=>{
 export const getAccounts = catchAsync(async(req,res,next)=>{
     const accounts = await Account.find({userId:req.user._id});
     
-    res.status(201).json({status:"success",accounts})
+    res.status(200).json({status:"success",accounts})
 })
 
