@@ -60,7 +60,7 @@ export const signin = catchAsync(async (req, res, next) => {
   if (!email || !password) {
     return next(new AppError('please provide email and password', 400));
   }
-  const user = await User.findOne({ email: req.body.email });
+  const user = await User.findOne({ email: req.body.email }).select("password");
   if (!user) {
     return next(new AppError('Could not find the user with given email', 404));
   }
@@ -124,5 +124,9 @@ export const signup = catchAsync(async (req, res, next) => {
   }
   const newUser = await User.create({ email, password, name });
 
-  createSendToken(newUser, 200, req, res);
+  createSendToken(newUser, 201, req, res);
 });
+
+export const getUser = catchAsync(async(req,res,next)=>{
+  res.status(200).json(req.user);
+})

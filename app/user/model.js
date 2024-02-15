@@ -4,7 +4,7 @@ import validator from 'validator';
 
 const userSchema = new mongoose.Schema(
   {
-    name: { type: String, require: [true, 'Please pass user name'] },
+    name: { type: String, required: [true, 'Please pass user name'] },
     profilePic: { type: String },
     email: {
       type: String,
@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       validate: [validator.isEmail, 'Email must be valid'],
     },
-    password: { type: String, require: [true, 'Please pass password'] },
+    password: { type: String, required: [true, 'Please pass password'],select: false },
     confirmPassword: { type: String },
     defaultAccount:{type:mongoose.Schema.Types.ObjectId,ref:'Account'}
   },

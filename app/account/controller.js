@@ -19,3 +19,9 @@ export const getAccounts = catchAsync(async(req,res,next)=>{
     res.status(200).json({status:"success",accounts})
 })
 
+export const getAccount = catchAsync(async(req,res,next)=>{
+    const account = await Account.findById(req.query.accountId);
+    
+    res.status(200).json({status:"success",account})
+})
+

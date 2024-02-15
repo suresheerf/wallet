@@ -25,14 +25,15 @@ export const newTransaction = catchAsync(async(req,res,next)=>{
         });
         return next(new AppError('insufficient balance',400));
     }
+    console.log("-1")
     const toUser = await User.findById(req.body.toUserId);
     if(!toUser.defaultAccount) return next(new AppError("receiver didn't link any account",400))
-    
+    console.log("0")
     const toAccount = await Account.findById(toUser.defaultAccount);
-
+console.log("1")
     toAccount.balance += req.body.amount;
     fromAccount.balance -= req.body.amount;
-    
+    console.log("2")
     if(Math.random() >  0.8){
         await Transaction.create({
             transactionId,
