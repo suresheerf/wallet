@@ -14,6 +14,7 @@ import transactionRouter from './transaction/routes.js';
 
 import User from './user/model.js';
 import Account from './account/model.js';
+import Transaction from './transaction/model.js';
 
 
 const app = express();
@@ -38,7 +39,8 @@ const options = {
     components: {
       schemas: {
         User: m2s(User),
-        Account: m2s(Account)
+        Account: m2s(Account),
+        Transaction: m2s(Transaction)
       },
     },
   },

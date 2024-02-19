@@ -121,26 +121,10 @@ console.log("1")
 
 /**
  * @swagger
- * /api/signup:
- *   post:
- *     summery: signup api
- *     tags: [user]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               email:
- *                 type: string
- *                 example: user1@gmail.com
- *               password:
- *                 type: string
- *                 example: user@123
- *               name:
- *                 type: string
- *                 example: user1
+ * /api/transactions:
+ *   get:
+ *     summery: get user transactions
+ *     tags: [transaction]
  *     responses:
  *       200:
  *         description: successful signup
@@ -149,8 +133,13 @@ console.log("1")
  *             schema:
  *               type: object
  *               properties:
- *                 token:
+ *                 status:
  *                   type: string
+ *                   example: success
+ *                 transactions:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Transaction'
  *
  */
 
