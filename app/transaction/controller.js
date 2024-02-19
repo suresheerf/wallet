@@ -5,6 +5,52 @@ import Account from "../account/model.js";
 import Transaction from "./model.js";
 import User from "../user/model.js";
 
+/**
+ * @swagger
+ * /api/transactions:
+ *   post:
+ *     summery: create new transaction
+ *     tags: [transaction]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               toUserId:
+ *                 type: string
+ *                 example: 654472af1320acd6e78f586a
+ *               fromAccountId:
+ *                 type: string
+ *                 example: 6544727e1320acd6e78f5864
+ *               amount:
+ *                 type: number
+ *                 example: 100
+ *     responses:
+ *       201:
+ *         description: successful transaction
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 transactionId:
+ *                   type: string
+ *                 fromAccount: 
+ *                   type: string
+ *                 fromUserId:
+ *                   type: string
+ *                 toUserId:
+ *                   type: string
+ *                 amount: 
+ *                   type: string
+ *                 status:
+ *                   type: string
+ *                 type:
+ *                   type: string
+ *
+ */
 export const newTransaction = catchAsync(async(req,res,next)=>{
     const transactionId = uuidv4();
     const fromAccount = await Account.findById(req.body.fromAccountId);
@@ -72,6 +118,41 @@ console.log("1")
     });
     res.status(201).json({status:"success",sentTransaction})
 });
+
+/**
+ * @swagger
+ * /api/signup:
+ *   post:
+ *     summery: signup api
+ *     tags: [user]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: user1@gmail.com
+ *               password:
+ *                 type: string
+ *                 example: user@123
+ *               name:
+ *                 type: string
+ *                 example: user1
+ *     responses:
+ *       200:
+ *         description: successful signup
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 token:
+ *                   type: string
+ *
+ */
 
 export const getTransactions = catchAsync(async(req,res,next)=>{
     const transactions = await Transaction.aggregate([

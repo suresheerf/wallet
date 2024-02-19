@@ -13,6 +13,7 @@ import accountRouter from './account/routes.js';
 import transactionRouter from './transaction/routes.js';
 
 import User from './user/model.js';
+import Account from './account/model.js';
 
 
 const app = express();
@@ -36,7 +37,8 @@ const options = {
     ],
     components: {
       schemas: {
-        User: m2s(User)
+        User: m2s(User),
+        Account: m2s(Account)
       },
     },
   },
