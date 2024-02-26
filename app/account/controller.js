@@ -41,7 +41,7 @@ import Account from "./model.js";
  *
  */
 export const createAccount = catchAsync(async(req,res,next)=>{
-    const isLinked = await Account.findOne(req.body.accountNumber);
+    const isLinked = await Account.findOne({accountNumber:req.body.accountNumber});
     if(isLinked) return next(new AppError("account already linked",400));
     const account = await Account.create({...req.body,userId:req.user._id});
     if(!req.user.defaultAccount){
